@@ -1,5 +1,5 @@
 # World Game
-Just a small open world game I am making in p5.js. I have many side projects, but I'm just putting this one onto github because I think it's pretty good and I will be working on it for a little bit more, so github can track my work.
+Just a small open world game I am making in p5.js. I have many side projects, but I'm just putting this one onto github because I think it's pretty good and I will be working on it for a little bit more, so github can track my work. This game is web-based, so the current version on the github repo main branch will be up on github pages at https://supercraftd.github.io/world-game/
 
 
 ## Current Features:
@@ -17,3 +17,7 @@ I don't mind if you contribute, just try to sort of follow the class system I've
 
 ## License:
 This is under the MIT license, and I don't really mind what you want to do with it, but please just credit me and tell me what you plan on doing with it.
+
+## Credits:
+p5.js
+p5 collide2d plugin
