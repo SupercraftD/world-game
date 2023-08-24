@@ -3,14 +3,27 @@ Just a small open world game I am making in p5.js. I have many side projects, bu
 
 
 ## Current Features:
+
+### New:
+1. Added whole game (8-24-23)
+
+### Current Key Features:
 1. a tile-based world, with different props, types, and properties assignable to each tile.
-2. a chunk-based generation system, each 20x20 tiles. These chunks can be mostly grass, mostly water, or a mix. Random props like berry bushes spawn on grass too.
+2. a chunk-based generation system, each 20x20 tiles. Chunks and tiles vary.
 3. smooth player movement system, with differing modifiers to speed depending on environment
-4. a way to interact with nearby tiles by clicking on their interactable props
-5. an inventory system, currently with 9 slots for your hotbar
-6. a minimap
-7. player stats that get modified by external factors
-8. UI stat bars that display those stats, when relevant
+4. interact with nearby tiles and props
+5. an inventory system
+6. player stats that get modified by external factors
+7. UI with minimap, inventory, stat bars
+
+### Upcoming Features:
+#### High priority (work on now):
+1. Food and energy stats
+2. consuming items from inventory
+#### Low priority (work on later):
+1. crafting
+2. building
+3. survival aspects
 
 ## Contributing:
 I don't mind if you contribute, just try to sort of follow the class system I've created with the different files, functions, and classes.
