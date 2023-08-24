@@ -6,7 +6,7 @@ Just a small open world game I am making in p5.js. I have many side projects, bu
 
 ### Updates:
 * **Latest Major: [8-24-23](updates/8-24-23.md)**
-* **Latest Minor: [8-24-23](updates/8-24-23-ii.md)**
+* **Latest Minor: [8-24-23](updates/8-24-23-iii.md)**
 
 ### Current Key Features:
 1. a tile-based world, with different props, types, and properties assignable to each tile.

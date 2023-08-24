@@ -61,9 +61,16 @@ class Player extends DrawRectObject{
             dx *= this.quarterspeed
             this.stats.oxygen.displayed=true
             this.stats.oxygen.val-=1
+            if (this.stats.oxygen.val<0){
+                this.stats.oxygen.val=0
+                this.stats.hp.val-=0.5
+            }
         }else{
-            this.stats.oxygen.val=this.stats.oxygen.max
-            this.stats.oxygen.displayed=false
+            this.stats.oxygen.val+=2
+            if (this.stats.oxygen.val>this.stats.oxygen.max){
+                this.stats.oxygen.displayed=false
+                this.stats.oxygen.val=this.stats.oxygen.max
+            }
             if (colliding('water')){
                 dy *= this.halfspeed
                 dx *= this.halfspeed
