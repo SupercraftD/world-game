@@ -26,7 +26,21 @@ let itemLookup={
       fill('red')
       rect(x+20,y+20,w-40,h-40)
     },
-    ToolTip:'Berry: a little red berry'
+    ToolTip:'Berry: a little red berry',
+    ControlsLines:['M1: Consume','M2: Discard All'],
+    m1clicked:()=>{
+      player.consume('Berry',1)
+    },
+    m2clicked:()=>{
+      player.discard('Berry',-1)
+    },
+    consumeEffect:()=>{
+      if (player.stats.hunger.val<=player.stats.hunger.max-12){
+        player.stats.hunger.val+=12
+      }else{
+        player.stats.hunger.val+=(player.stats.hunger.max-player.stats.hunger.val)
+      }
+    }
   }
 }
 
@@ -41,6 +55,10 @@ let effectProps=[]
 
 function setup(){
   createCanvas(960,720)
+  for (let element of document.getElementsByClassName("p5Canvas")) {
+    element.addEventListener("contextmenu", (e) => e.preventDefault());
+  }
+
   player = new Player(0,0)
 }
 let minimapPixels=[]
@@ -178,7 +196,28 @@ function drawUI(){
         textSize(16)
         fill('white')
         text(item.ToolTip,mouseX+12,mouseY+textAscent())
-
+        ma=0
+        for (let line of item.ControlsLines){
+          if (textWidth(line)>ma){
+            ma=textWidth(line)
+          }
+        }
+        strokeWeight(0)
+        fill(255,128)
+        rect(mouseX+24,mouseY+textAscent()+5,ma,textAscent()*item.ControlsLines.length+10)
+        fill('black')
+        text(item.ControlsLines.join('\n'),mouseX+24,mouseY+textAscent()*2+5)
+        if (mouseJustDown){
+          if (mouseButton==LEFT){
+            if ('m1clicked' in item){
+              item.m1clicked()
+            }
+          }else{
+            if ('m2clicked' in item){
+              item.m2clicked()
+            }
+          }
+        }
       }
 
     }

@@ -18,16 +18,29 @@ class Player extends DrawRectObject{
                 'displayed':true,
                 'color':'red'
             },
+            'hunger':{
+                'max':100,
+                'val':100,
+                'displayed':true,
+                'color':'brown'
+            },
             'oxygen':{
                 'max':100,
                 'val':100,
                 'displayed':false,
                 'color':'lightblue'
+            },
+            'energy':{
+                'max':100,
+                'val':100,
+                'displayed':false,
+                'color':'yellow'
             }
         }
 
     }
     draw(){
+        let startOfFrameHealth=this.stats.hp.val
         strokeWeight(3)
         stroke(0)
         super.draw(this.camTopLeft)
@@ -55,7 +68,6 @@ class Player extends DrawRectObject{
         if (keyIsDown('D'.charCodeAt(0)) || keyIsDown(RIGHT_ARROW)){
             dx+=1
         }
-
         if (colliding('deepwater')){
             dy *= this.quarterspeed
             dx *= this.quarterspeed
@@ -64,6 +76,10 @@ class Player extends DrawRectObject{
             if (this.stats.oxygen.val<0){
                 this.stats.oxygen.val=0
                 this.stats.hp.val-=0.5
+                if (this.stats.hp.val<0){
+                    this.stats.hp.val=0
+                    alert('you died')
+                }
             }
         }else{
             this.stats.oxygen.val+=2
@@ -79,13 +95,36 @@ class Player extends DrawRectObject{
                 dy *= this.speed
             }
         }
-
         this.x+=dx        
         this.y+=dy
 
         let moving=false
         if (dx!=0 || dy!=0){
             moving=true
+        }
+        if (keyIsDown(SHIFT)){
+            if (moving && this.stats.energy.val > 0){
+                this.x+=dx
+                this.y+=dy
+                this.stats.energy.val -= 1
+                this.stats.energy.displayed=true
+            }
+        }else{
+            if (this.stats.energy.val < this.stats.energy.max){
+                if (this.stats.hunger.val > 0){
+                    this.stats.energy.val += 1
+                    this.stats.hunger.val -= 0.1    
+                }
+            }else{
+                this.stats.energy.displayed=false
+            }
+        }
+
+        if (!(this.stats.hp.val < startOfFrameHealth)){
+            if (this.stats.hp.val < this.stats.hp.max && this.stats.hunger.val >0){
+                this.stats.hunger.val-=0.1
+                this.stats.hp.val += 0.5
+            }
         }
 
         if (all(this.getCollidingTiles(),(e)=>{return e.type=='water' || e.type=='deepwater'}) && !this.waterEffectsData.db && moving){
@@ -142,5 +181,40 @@ class Player extends DrawRectObject{
             return true
         }
         return false
+    }
+    consume(itemname,amount){
+        let b
+        for (let t of this.inventory){
+            if (t.name==itemname){
+                b=t
+                break
+            }
+        }
+        if (b.count >= amount){
+            b.count -= amount
+            for (let i=0;i<amount;i++){
+                itemLookup[itemname].consumeEffect()
+            }
+            if (b.count==0){
+                this.discard(b.name,-1)
+            }
+        }
+    }
+    discard(itemname,amount){
+        let b
+        for (let t of this.inventory){
+            if (t.name==itemname){
+                b=t
+                break
+            }
+        }
+        if (amount==-1){
+            this.inventory.splice(this.inventory.indexOf(b),1)
+        }else{
+            b.count -= amounts
+            if (b.count<=0){
+                this.discard(b.name,-1)
+            }
+        }
     }
 }

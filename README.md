@@ -5,7 +5,7 @@ Just a small open world game I am making in p5.js. I have many side projects, bu
 ## Current Features:
 
 ### Updates:
-* **Latest Major: [8-24-23](updates/8-24-23.md)**
+* **Latest Major: [8-25-23](updates/8-25-23.md)**
 * **Latest Minor: [8-24-23](updates/8-24-23-iii.md)**
 
 ### Current Key Features:
@@ -13,7 +13,7 @@ Just a small open world game I am making in p5.js. I have many side projects, bu
 2. a chunk-based generation system, each 20x20 tiles. Chunks and tiles vary.
 3. smooth player movement system, with differing modifiers to speed depending on environment
 4. interact with nearby tiles and props
-5. an inventory system
+5. an inventory system with interactable items
 6. player stats that get modified by external factors
 7. UI with minimap, inventory, stat bars
 
