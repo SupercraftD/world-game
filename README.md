@@ -19,8 +19,8 @@ Just a small open world game I am making in p5.js. I have many side projects, bu
 
 ### Upcoming Features:
 #### High priority (work on now):
-1. Food and energy stats
-2. consuming items from inventory
+1. Food and energy stats **(done)**
+2. consuming items from inventory **(done)**
 #### Low priority (work on later):
 1. crafting
 2. building
